@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
+
+// Import Components
 import Lightbox from "./Lightbox";
-import Picture from "./Picture"; // Import the Picture component
+import Picture from "./Picture";
 
 const useStyles = createUseStyles((theme) => ({
   Gallery: {
@@ -44,7 +46,7 @@ const Gallery = ({ title, setTitle, pictures, setPictures }) => {
   return (
     <section>
       <div>
-        Step one: Give it a name
+        Slap it a name
         <input
           type="text"
           value={title}

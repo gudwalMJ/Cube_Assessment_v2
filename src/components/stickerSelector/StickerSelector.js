@@ -1,4 +1,3 @@
-// src/components/stickerSelector/StickerSelector.js
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 
@@ -15,13 +14,17 @@ const useStyles = createUseStyles({
     gap: "1rem", // Space between text and button
     marginBottom: "1rem", // Space below the control row
   },
-  burgerButton: {
+  stickersButton: {
     backgroundColor: "#fff",
     border: "none",
     padding: "10px 15px",
     cursor: "pointer",
     borderRadius: "5px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    fontSize: "16px",
+    "&:hover": {
+      backgroundColor: "#f0f0f0",
+    },
   },
   Stickers: {
     display: "flex",
@@ -69,7 +72,6 @@ const useStyles = createUseStyles({
 const StickerSelector = ({ stickers, setSticker }) => {
   const classes = useStyles();
   const [selectedSticker, setSelectedSticker] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleStickerClick = (stickerUrl) => {
     if (selectedSticker === stickerUrl) {
@@ -84,35 +86,26 @@ const StickerSelector = ({ stickers, setSticker }) => {
   return (
     <div className={classes.stickerContainer}>
       <div className={classes.controlRow}>
-        <div>Step 2: Select your sticker...</div>
-        <button
-          className={classes.burgerButton}
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          ☰ {/* This represents a burger icon */}
-        </button>
+        <button className={classes.stickersButton}>Stickers</button>
       </div>
 
-      {/* Render the stickers only if the burger menu is open */}
-      {isOpen && (
-        <section className={classes.Stickers}>
-          {stickers.map((stickerUrl, index) => (
-            <button
-              key={index}
-              onClick={() => handleStickerClick(stickerUrl)}
-              aria-label={`Sticker ${index}`}
+      <section className={classes.Stickers}>
+        {stickers.map((stickerUrl, index) => (
+          <button
+            key={index}
+            onClick={() => handleStickerClick(stickerUrl)}
+            aria-label={`Sticker ${index}`}
+          >
+            <div
+              className={`${classes.stickerWrapper} ${
+                selectedSticker === stickerUrl ? classes.selected : ""
+              }`}
             >
-              <div
-                className={`${classes.stickerWrapper} ${
-                  selectedSticker === stickerUrl ? classes.selected : ""
-                }`}
-              >
-                <img src={stickerUrl} alt={`Sticker ${index}`} />
-              </div>
-            </button>
-          ))}
-        </section>
-      )}
+              <img src={stickerUrl} alt={`Sticker ${index}`} />
+            </div>
+          </button>
+        ))}
+      </section>
     </div>
   );
 };

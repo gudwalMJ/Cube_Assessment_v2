@@ -1,19 +1,15 @@
 // src/App.js
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
-import { useWebcamCapture } from "./hooks/useWebcamCapture";
 import { Switch, Route, Redirect } from "react-router-dom";
 import backgroundImage from "./assets/images/background.webp";
 
-// Import components
-import Header from "./components/header/Header";
-import Gallery from "./components/gallery/Gallery";
-import StickerSelector from "./components/stickerSelector/StickerSelector";
-import Main from "./components/main/Main";
-import Readme from "./components/readme/Readme";
+// Import Hooks
+import { useWebcamCapture } from "./hooks/useWebcamCapture";
 
-// Import stickers
-import stickers from "./assets/stickers";
+// Import components
+import LandingPage from "./components/landingPage/LandingPage";
+import Readme from "./components/readme/Readme";
 
 const useStyles = createUseStyles((theme) => ({
   App: {
@@ -26,6 +22,9 @@ const useStyles = createUseStyles((theme) => ({
     minHeight: "100vh",
     maxWidth: "2500px",
     margin: "auto",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
@@ -34,7 +33,6 @@ function App(props) {
   const [sticker, setSticker] = useState();
   const [title, setTitle] = useState("SLAPPE!");
   const [pictures, setPictures] = useState([]);
-
   const [handleVideoRef, handleCanvasRef, handleCapture, capturedPicture] =
     useWebcamCapture(sticker, title);
 
@@ -46,23 +44,18 @@ function App(props) {
 
   return (
     <div className={classes.App}>
-      <Header />
       <Switch>
         <Route path="/" exact>
-          <main>
-            <Gallery
-              title={title}
-              setTitle={setTitle}
-              pictures={pictures}
-              setPictures={setPictures}
-            />
-            <StickerSelector stickers={stickers} setSticker={setSticker} />
-            <Main
-              handleVideoRef={handleVideoRef}
-              handleCanvasRef={handleCanvasRef}
-              handleCapture={handleCapture}
-            />
-          </main>
+          <LandingPage
+            handleVideoRef={handleVideoRef}
+            handleCanvasRef={handleCanvasRef}
+            handleCapture={handleCapture}
+            title={title}
+            setTitle={setTitle}
+            pictures={pictures}
+            setPictures={setPictures}
+            setSticker={setSticker}
+          />
         </Route>
         <Route path="/readme">
           <Readme />
