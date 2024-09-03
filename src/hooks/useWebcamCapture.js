@@ -8,11 +8,11 @@ export const useWebcamCapture = (stickerSrc, title) => {
 
   const onVideoRef = useCallback((node) => {
     setVideoRef(node);
-  });
+  }, []); // Add empty dependency array to useCallback
 
   const onCanvasRef = useCallback((node) => {
     setCanvasRef(node);
-  });
+  }, []); // Add empty dependency array to useCallback
 
   const [initialized, setInitialized] = useState(false);
 

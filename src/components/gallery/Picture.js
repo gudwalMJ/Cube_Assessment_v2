@@ -26,8 +26,8 @@ const useStyles = createUseStyles((theme) => ({
     },
     "& .deleteButton": {
       position: "absolute",
-      top: 8,
-      right: 8,
+      bottom: 25,
+      right: 15,
       cursor: "pointer",
       width: "24px",
       height: "24px",

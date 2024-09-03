@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { useWebcamCapture } from "./hooks/useWebcamCapture";
 import { Switch, Route, Redirect } from "react-router-dom";
-// Import background image
 import backgroundImage from "./assets/images/background.webp";
 
 // Import components
@@ -13,13 +12,13 @@ import StickerSelector from "./components/stickerSelector/StickerSelector";
 import Main from "./components/main/Main";
 import Readme from "./components/readme/Readme";
 
-// Import stickers from the sticker folder
+// Import stickers
 import stickers from "./assets/stickers";
 
-const useStyles = createUseStyles({
+const useStyles = createUseStyles((theme) => ({
   App: {
     padding: "20px",
-    backgroundImage: `url(${backgroundImage})`, // Set the background image
+    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
@@ -28,18 +27,17 @@ const useStyles = createUseStyles({
     maxWidth: "2500px",
     margin: "auto",
   },
-});
+}));
 
 function App(props) {
   const classes = useStyles(props);
-  const [sticker, setSticker] = useState(null); // Initialize with null
+  const [sticker, setSticker] = useState();
   const [title, setTitle] = useState("SLAPPE!");
-  const [pictures, setPictures] = useState([]); // Updated state to hold multiple pictures
+  const [pictures, setPictures] = useState([]);
 
   const [handleVideoRef, handleCanvasRef, handleCapture, capturedPicture] =
-    useWebcamCapture(sticker, title); // Pass sticker directly
+    useWebcamCapture(sticker, title);
 
-  // Effect to add captured picture to the gallery
   React.useEffect(() => {
     if (capturedPicture) {
       setPictures((prevPictures) => [...prevPictures, capturedPicture]);
@@ -52,7 +50,6 @@ function App(props) {
       <Switch>
         <Route path="/" exact>
           <main>
-            {/* Pass the entire pictures array to Gallery, including setPictures */}
             <Gallery
               title={title}
               setTitle={setTitle}
