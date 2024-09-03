@@ -13,9 +13,6 @@ const useStyles = createUseStyles({
     width: "100%",
     maxWidth: "1200px",
     padding: "40px",
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    borderRadius: "10px",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
   },
   topSection: {
     display: "flex",
@@ -27,6 +24,19 @@ const useStyles = createUseStyles({
   leftPanel: {
     flex: "1",
     paddingRight: "20px",
+    color: "white", // Set text color to white
+    fontFamily: "'Martian Mono', monospace", // Use "Martian Mono" font
+    "& h1": {
+      fontWeight: "700",
+      fontSize: "4rem", // Font for the title
+      textShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
+      margin: "0 0 10px 0",
+    },
+    "& p": {
+      fontWeight: "700",
+      fontSize: "2rem", // Paragraph font
+      textShadow: "4px 4px 8px rgba(0, 0, 0, 0.7)",
+    },
   },
   rightPanel: {
     flex: "1",
@@ -34,13 +44,16 @@ const useStyles = createUseStyles({
   },
   button: {
     marginTop: "20px",
-    padding: "10px 20px",
-    fontSize: "16px",
+    padding: "15px 40px", // Increase padding for a larger button
+    fontWeight: "700",
+    fontSize: "1.5em", // Font for button
     color: "#fff",
     backgroundColor: "#ff6347",
     border: "none",
     borderRadius: "5px",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
     cursor: "pointer",
+    fontFamily: "'Martian Mono', monospace", // Apply "Martian Mono" font to the button
     "&:hover": {
       backgroundColor: "#ff4500",
     },
@@ -48,9 +61,14 @@ const useStyles = createUseStyles({
   expandedArea: {
     width: "100%",
     marginTop: "20px",
+    marginLeft: "2px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "#b3d9ff", // Light blue background for the expanded area
+    padding: "20px", // Add padding for spacing inside the area
+    borderRadius: "10px", // Add rounded corners for a softer look
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Add subtle shadow for depth
   },
 });
 
@@ -95,7 +113,7 @@ const LandingPage = ({
         </div>
       </div>
 
-      {/* Expanded area should be below the top section */}
+      {/* Expanded area below the top section */}
       {showExpandedArea && (
         <div className={classes.expandedArea}>
           <StickerSelector stickers={stickers} setSticker={setSticker} />

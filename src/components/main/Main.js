@@ -7,10 +7,10 @@ const useStyles = createUseStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: "100%", // Adjust width to ensure it fills the container
-    height: "100%", // Adjust height to ensure it fills the container
+    width: "100%",
+    height: "100%",
     "& canvas": {
-      width: "100%", // Make sure the canvas fills its container
+      width: "100%",
       height: "auto",
     },
     "& video": {
