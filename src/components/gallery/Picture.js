@@ -1,7 +1,8 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-// Import the delete icon
+// Import the delete and download icons
 import deleteIcon from "../../assets/icons/delete.png";
+import downloadIcon from "../../assets/icons/download.png"; // Import the download icon
 
 const useStyles = createUseStyles((theme) => ({
   Picture: {
@@ -24,10 +25,8 @@ const useStyles = createUseStyles((theme) => ({
       width: "100%",
       color: theme.palette.text,
     },
-    "& .deleteButton": {
+    "& .deleteButton, & .downloadButton": {
       position: "absolute",
-      bottom: 25,
-      right: 15,
       cursor: "pointer",
       width: "24px",
       height: "24px",
@@ -36,6 +35,22 @@ const useStyles = createUseStyles((theme) => ({
       backgroundColor: "white",
       padding: "4px",
       boxShadow: "0 0 4px rgba(0, 0, 0, 0.6)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    "& .deleteButton": {
+      bottom: 25,
+      right: 50, // Adjust position for download button
+    },
+    "& .downloadButton": {
+      bottom: 25,
+      right: 10, // Position the download button next to the delete button
+    },
+    "& .deleteButton img, & .downloadButton img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "contain", // Ensures the image fits inside its container
     },
   },
 }));
@@ -51,13 +66,21 @@ const Picture = ({ picture, index, handleImageClick, handleDelete }) => {
         onClick={() => handleImageClick(index)} // Open lightbox on click
       />
       <h3>{picture.title}</h3>
+      {/* Download button */}
+      <a
+        href={picture.dataUri}
+        download={picture.title || "download"} // Use picture title or default to "download"
+        className={`${classes.downloadButton} downloadButton`}
+      >
+        <img src={downloadIcon} alt="Download" />
+      </a>
       {/* Delete button */}
-      <img
-        src={deleteIcon}
-        alt="Delete"
-        className="deleteButton"
+      <div
+        className={`${classes.deleteButton} deleteButton`}
         onClick={() => handleDelete(index)}
-      />
+      >
+        <img src={deleteIcon} alt="Delete" />
+      </div>
     </div>
   );
 };
