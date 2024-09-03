@@ -11,19 +11,26 @@ const useStyles = createUseStyles({
   controlRow: {
     display: "flex",
     alignItems: "center",
-    gap: "1rem", // Space between text and button
-    marginBottom: "1rem", // Space below the control row
+    gap: "1rem",
+    marginBottom: "1rem",
+    width: "100%",
+    justifyContent: "flex-start", // Aligns content to the left
   },
   stickersButton: {
-    backgroundColor: "#fff",
+    marginTop: "10px", // Aligns closely to the expanded area
+    marginRight: "auto", // Pushes the button to the left
+    padding: "15px 40px", // Matches the "Or Not" button size
+    fontWeight: "700",
+    fontSize: "1.5em",
+    color: "#fff",
+    backgroundColor: "#ff6347", // Same color as "Or Not" button
     border: "none",
-    padding: "10px 15px",
-    cursor: "pointer",
     borderRadius: "5px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    fontSize: "16px",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+    cursor: "pointer",
+    fontFamily: "'Martian Mono', monospace", // Font family
     "&:hover": {
-      backgroundColor: "#f0f0f0",
+      backgroundColor: "#ff4500", // Hover color
     },
   },
   Stickers: {
@@ -47,7 +54,8 @@ const useStyles = createUseStyles({
     },
   },
   stickerWrapper: {
-    backgroundColor: "white",
+    marginTop: "20px",
+    backgroundColor: "#e6f7ff",
     borderRadius: "50px",
     padding: "0.5rem",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",

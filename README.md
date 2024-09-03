@@ -22,10 +22,10 @@ However, we would like for you to show off your strengths as a developer by impr
 ### Some ideas (no need to do all):
 
 - Make it look really nice
-- Let users pick from multiple (custom) stickers
+- Let users pick from multiple (custom) stickers -- DONE
 - Improve the workflow and ux
-- Show multiple captured images in a gallery
-- Let users download or share the captured pics
+- Show multiple captured images in a gallery -- DONE
+- Let users download or share the captured pics -- DONE
 - Add super cool effects to webcam feed
 - Organize, document and test the code
 - Integrate with zoom, teams, meet...

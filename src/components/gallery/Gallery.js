@@ -13,6 +13,22 @@ const useStyles = createUseStyles((theme) => ({
     marginTop: "50px",
     marginBottom: "50px",
   },
+  inputContainer: {
+    marginTop: "20px",
+    marginBottom: "20px", // Add some space below the input area
+    fontSize: "2rem",
+    color: "white",
+    fontWeight: "700",
+    fontFamily: "'Martian Mono', monospace",
+    "& input": {
+      fontWeight: "700",
+      fontSize: "1.5rem",
+      padding: "10px",
+      border: "2px solid #ccc",
+      borderRadius: "5px",
+      marginLeft: "10px",
+    },
+  },
 }));
 
 const Gallery = ({ title, setTitle, pictures, setPictures }) => {
@@ -45,7 +61,7 @@ const Gallery = ({ title, setTitle, pictures, setPictures }) => {
 
   return (
     <section>
-      <div>
+      <div className={classes.inputContainer}>
         Slap it a name
         <input
           type="text"
