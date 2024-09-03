@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export const useWebcamCapture = (stickerImg, title) => {
+export const useWebcamCapture = (stickerSrc, title) => {
   const [videoRef, setVideoRef] = useState();
   const [canvasRef, setCanvasRef] = useState();
   const [picture, setPicture] = useState();
+  const [stickerImg, setStickerImg] = useState(null);
 
   const onVideoRef = useCallback((node) => {
     setVideoRef(node);
@@ -14,6 +15,16 @@ export const useWebcamCapture = (stickerImg, title) => {
   });
 
   const [initialized, setInitialized] = useState(false);
+
+  useEffect(() => {
+    if (stickerSrc) {
+      const img = new Image();
+      img.src = stickerSrc;
+      img.onload = () => {
+        setStickerImg(img);
+      };
+    }
+  }, [stickerSrc]);
 
   useEffect(() => {
     if (videoRef && canvasRef && !initialized) {
@@ -33,7 +44,7 @@ export const useWebcamCapture = (stickerImg, title) => {
           console.log("Couldn't start webcam: " + err);
         });
 
-      const onCanPlay = function (ev) {
+      const onCanPlay = function () {
         const width = videoRef.videoWidth;
         const height = videoRef.videoHeight / (videoRef.videoWidth / width);
 
@@ -41,10 +52,10 @@ export const useWebcamCapture = (stickerImg, title) => {
         videoRef.setAttribute("height", height);
         canvasRef.setAttribute("width", width);
         canvasRef.setAttribute("height", height);
-        videoRef.removeEventListener("canplay", onCanPlay, false);
+        videoRef.removeEventListener("canplay", onCanPlay);
       };
 
-      videoRef.addEventListener("canplay", onCanPlay, false);
+      videoRef.addEventListener("canplay", onCanPlay);
       setInitialized(true);
     } else if (!videoRef || !canvasRef) {
       setInitialized(false);
@@ -65,13 +76,17 @@ export const useWebcamCapture = (stickerImg, title) => {
           const bb = canvasRef.getBoundingClientRect();
           const x = ((mousePos.current.x - bb.left) / bb.width) * width;
           const y = ((mousePos.current.y - bb.top) / bb.height) * height;
-          ctx.drawImage(
-            stickerImg,
-            x - width * 0.2,
-            y - width * 0.2,
-            width * 0.4,
-            width * 0.4
-          );
+          try {
+            ctx.drawImage(
+              stickerImg,
+              x - width * 0.1,
+              y - width * 0.1,
+              width * 0.2,
+              width * 0.2
+            );
+          } catch (error) {
+            console.error("Error drawing sticker:", error);
+          }
         }
         requestAnimationFrame(renderFrame);
       };
@@ -97,15 +112,12 @@ export const useWebcamCapture = (stickerImg, title) => {
     }
   }, [canvasRef]);
 
-  const onCapture = useCallback(
-    (ev) => {
-      if (canvasRef) {
-        const data = canvasRef.toDataURL("image/png");
-        setPicture({ dataUri: data, title });
-      }
-    },
-    [canvasRef, title]
-  );
+  const onCapture = useCallback(() => {
+    if (canvasRef) {
+      const data = canvasRef.toDataURL("image/png");
+      setPicture({ dataUri: data, title });
+    }
+  }, [canvasRef, title]);
 
   return [onVideoRef, onCanvasRef, onCapture, picture];
 };

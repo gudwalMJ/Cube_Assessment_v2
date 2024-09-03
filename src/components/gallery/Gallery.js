@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
-import Lightbox from "./Lightbox"; // Import the custom Lightbox
+import Lightbox from "./Lightbox";
+import Picture from "./Picture"; // Import the Picture component
 
 const useStyles = createUseStyles((theme) => ({
   Gallery: {
@@ -10,28 +11,9 @@ const useStyles = createUseStyles((theme) => ({
     marginTop: "50px",
     marginBottom: "50px",
   },
-  Picture: {
-    background: "black",
-    padding: 4,
-    position: "relative",
-    display: "inline-block",
-    transition: "transform 0.3s ease",
-    "&:hover": {
-      transform: "scale(1.05)", // Apply scale on hover
-    },
-    "& img": {
-      height: "16rem",
-    },
-    "& h3": {
-      padding: 8,
-      textAlign: "center",
-      width: "100%",
-      color: theme.palette.text,
-    },
-  },
 }));
 
-const Gallery = ({ title, setTitle, pictures }) => {
+const Gallery = ({ title, setTitle, pictures, setPictures }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -55,6 +37,10 @@ const Gallery = ({ title, setTitle, pictures }) => {
     setPhotoIndex((photoIndex + pictures.length - 1) % pictures.length);
   };
 
+  const handleDelete = (index) => {
+    setPictures((prevPictures) => prevPictures.filter((_, i) => i !== index));
+  };
+
   return (
     <section>
       <div>
@@ -67,14 +53,13 @@ const Gallery = ({ title, setTitle, pictures }) => {
       </div>
       <div className={classes.Gallery}>
         {pictures.map((picture, index) => (
-          <div key={index} className={classes.Picture}>
-            <img
-              src={picture.dataUri}
-              alt={picture.title}
-              onClick={() => handleImageClick(index)} // Open lightbox on click
-            />
-            <h3>{picture.title}</h3>
-          </div>
+          <Picture
+            key={index}
+            picture={picture}
+            index={index}
+            handleImageClick={handleImageClick}
+            handleDelete={handleDelete}
+          />
         ))}
       </div>
 

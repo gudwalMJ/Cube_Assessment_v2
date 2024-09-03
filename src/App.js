@@ -13,10 +13,10 @@ import StickerSelector from "./components/stickerSelector/StickerSelector";
 import Main from "./components/main/Main";
 import Readme from "./components/readme/Readme";
 
-// Import stickers
-import logo from "./assets/stickers/slap.png";
+// Import stickers from the sticker folder
+import stickers from "./assets/stickers";
 
-const useStyles = createUseStyles((theme) => ({
+const useStyles = createUseStyles({
   App: {
     padding: "20px",
     backgroundImage: `url(${backgroundImage})`, // Set the background image
@@ -26,25 +26,18 @@ const useStyles = createUseStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     minHeight: "100vh",
     maxWidth: "2500px",
-    minHeight: "600px",
     margin: "auto",
   },
-}));
-
-const stickers = [logo].map((url) => {
-  const img = document.createElement("img");
-  img.src = url;
-  return { img, url };
 });
 
 function App(props) {
   const classes = useStyles(props);
-  const [sticker, setSticker] = useState();
+  const [sticker, setSticker] = useState(null); // Initialize with null
   const [title, setTitle] = useState("SLAPPE!");
   const [pictures, setPictures] = useState([]); // Updated state to hold multiple pictures
 
   const [handleVideoRef, handleCanvasRef, handleCapture, capturedPicture] =
-    useWebcamCapture(sticker?.img, title);
+    useWebcamCapture(sticker, title); // Pass sticker directly
 
   // Effect to add captured picture to the gallery
   React.useEffect(() => {
@@ -59,8 +52,13 @@ function App(props) {
       <Switch>
         <Route path="/" exact>
           <main>
-            {/* Pass the entire pictures array to Gallery */}
-            <Gallery title={title} setTitle={setTitle} pictures={pictures} />
+            {/* Pass the entire pictures array to Gallery, including setPictures */}
+            <Gallery
+              title={title}
+              setTitle={setTitle}
+              pictures={pictures}
+              setPictures={setPictures}
+            />
             <StickerSelector stickers={stickers} setSticker={setSticker} />
             <Main
               handleVideoRef={handleVideoRef}
