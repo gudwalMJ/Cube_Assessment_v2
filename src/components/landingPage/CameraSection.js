@@ -1,7 +1,7 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 
-//Import Components
+// Import Components
 import Main from "../main/Main";
 
 const useStyles = createUseStyles({
@@ -11,7 +11,13 @@ const useStyles = createUseStyles({
   },
 });
 
-const CameraSection = ({ handleVideoRef, handleCanvasRef, handleCapture }) => {
+const CameraSection = ({
+  handleVideoRef,
+  handleCanvasRef,
+  handleCapture,
+  filter,
+}) => {
+  // Add filter prop here
   const classes = useStyles();
 
   return (
@@ -20,6 +26,7 @@ const CameraSection = ({ handleVideoRef, handleCanvasRef, handleCapture }) => {
         handleVideoRef={handleVideoRef}
         handleCanvasRef={handleCanvasRef}
         handleCapture={handleCapture}
+        filter={filter}
       />
     </div>
   );

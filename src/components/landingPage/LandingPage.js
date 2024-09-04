@@ -9,7 +9,7 @@ import ExpandedArea from "./ExpandedArea";
 const useStyles = createUseStyles({
   landingPage: {
     display: "flex",
-    flexDirection: "column", // Stack elements vertically
+    flexDirection: "column",
     alignItems: "center",
     width: "100%",
     maxWidth: "1200px",
@@ -36,6 +36,7 @@ const LandingPage = ({
 }) => {
   const classes = useStyles();
   const [showExpandedArea, setShowExpandedArea] = useState(false);
+  const [filter, setFilter] = useState(""); // State for filter
 
   const handleToggleClick = () => {
     setShowExpandedArea((prev) => !prev);
@@ -52,6 +53,7 @@ const LandingPage = ({
           handleVideoRef={handleVideoRef}
           handleCanvasRef={handleCanvasRef}
           handleCapture={handleCapture}
+          filter={filter} // Pass the filter to CameraSection
         />
       </div>
 
@@ -62,6 +64,7 @@ const LandingPage = ({
           pictures={pictures}
           setPictures={setPictures}
           setSticker={setSticker}
+          setFilter={setFilter} // Pass down setFilter prop
         />
       )}
     </div>

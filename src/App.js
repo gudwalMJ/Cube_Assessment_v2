@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 import { Switch, Route, Redirect } from "react-router-dom";
-import backgroundImage from "./assets/images/background.webp";
 
 // Import Hooks
 import { useWebcamCapture } from "./hooks/useWebcamCapture";
@@ -11,6 +10,7 @@ import LandingPage from "./components/landingPage/LandingPage";
 import Readme from "./components/readme/Readme";
 
 // Import Assets
+import backgroundImage from "./assets/images/background.webp";
 
 const useStyles = createUseStyles((theme) => ({
   App: {
