@@ -21,7 +21,7 @@ However, we would like for you to show off your strengths as a developer by impr
 
 ### Some ideas (no need to do all):
 
-- Make it look really nice
+- Make it look really nice -- DONE
 - Let users pick from multiple (custom) stickers -- DONE
 - Improve the workflow and ux
 - Show multiple captured images in a gallery -- DONE
