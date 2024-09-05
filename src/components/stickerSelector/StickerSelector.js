@@ -5,8 +5,9 @@ const useStyles = createUseStyles({
   stickerContainer: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start", // Aligns content to the left
+    alignItems: "flex-start",
     position: "relative",
+    width: "100%",
   },
   controlRow: {
     display: "flex",
@@ -14,24 +15,21 @@ const useStyles = createUseStyles({
     gap: "1rem",
     marginBottom: "1rem",
     width: "100%",
-    justifyContent: "flex-start", // Aligns content to the left
+    justifyContent: "flex-start",
   },
   stickersButton: {
-    marginTop: "10px", // Aligns closely to the expanded area
-    marginRight: "auto", // Pushes the button to the left
-    padding: "15px 40px", // Matches the "Or Not" button size
+    marginTop: "10px",
+    marginRight: "auto",
+    padding: "15px 40px",
     fontWeight: "700",
     fontSize: "1.5em",
     color: "#fff",
-    backgroundColor: "#ff6347", // Same color as "Or Not" button
+    backgroundColor: "#ff6347",
     border: "none",
     borderRadius: "5px",
     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-    cursor: "pointer",
-    fontFamily: "'Martian Mono', monospace", // Font family
-    "&:hover": {
-      backgroundColor: "#ff4500", // Hover color
-    },
+    cursor: "default",
+    fontFamily: "'Martian Mono', monospace",
   },
   Stickers: {
     display: "flex",
@@ -40,40 +38,25 @@ const useStyles = createUseStyles({
     marginTop: "1rem",
     marginBottom: "1rem",
     alignItems: "center",
-    "& button": {
-      border: "none",
-      background: "none",
-      cursor: "pointer",
-      padding: 0,
-      outline: "none",
-      position: "relative",
-      "&:focus": {
-        outline: "2px solid #b7f2e1",
-        borderRadius: "50px",
-      },
-    },
   },
   stickerWrapper: {
-    marginTop: "20px",
-    backgroundColor: "#e6f7ff",
-    borderRadius: "50px",
-    padding: "0.5rem",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    transition: "transform 0.2s ease, border-color 0.3s ease",
+    backgroundColor: "transparent",
+    padding: "0",
+    boxShadow: "none",
+    cursor: "pointer", // Change cursor to pointer when hovering over stickers
+    "& img": {
+      height: "3.5rem",
+      border: "2px solid transparent",
+      borderRadius: "50%", // Ensures the image itself is rounded
+      transition: "transform 0.2s ease, border-color 0.3s ease",
+    },
     "&:hover": {
       transform: "scale(1.05)",
       borderColor: "#b7f2e1",
     },
-    "& img": {
-      height: "3.5rem",
-      border: "2px solid transparent",
-      borderRadius: "50px",
-      transition: "transform 0.2s ease, border-color 0.3s ease",
-    },
   },
   selected: {
     borderColor: "#b7f2e1 !important",
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
   },
 });
 
@@ -97,6 +80,7 @@ const StickerSelector = ({ stickers, setSticker }) => {
         <button className={classes.stickersButton}>Stickers</button>
       </div>
 
+      {/* Stickers Section Always Visible */}
       <section className={classes.Stickers}>
         {stickers.map((stickerUrl, index) => (
           <button

@@ -19,16 +19,17 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-const Main = ({ handleVideoRef, handleCanvasRef, handleCapture }) => {
+const Main = ({ handleVideoRef, handleCanvasRef, handleCapture, filter }) => {
   const classes = useStyles();
   return (
     <section className={classes.Main}>
-      <video ref={handleVideoRef} />
+      <video ref={handleVideoRef} style={{ filter }} />
       <canvas
         ref={handleCanvasRef}
         width={2}
         height={2}
         onClick={handleCapture}
+        style={{ filter }}
       />
     </section>
   );

@@ -9,7 +9,7 @@ import ExpandedArea from "./ExpandedArea";
 const useStyles = createUseStyles({
   landingPage: {
     display: "flex",
-    flexDirection: "column", // Stack elements vertically
+    flexDirection: "column",
     alignItems: "center",
     width: "100%",
     maxWidth: "1200px",
@@ -33,12 +33,17 @@ const LandingPage = ({
   pictures,
   setPictures,
   setSticker,
+  setFilter, // Accept setFilter prop from parent
 }) => {
   const classes = useStyles();
   const [showExpandedArea, setShowExpandedArea] = useState(false);
 
   const handleToggleClick = () => {
     setShowExpandedArea((prev) => !prev);
+  };
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter); // Use the filter setter from the parent component
   };
 
   return (
@@ -62,6 +67,7 @@ const LandingPage = ({
           pictures={pictures}
           setPictures={setPictures}
           setSticker={setSticker}
+          setFilter={handleFilterChange} // Pass down the handleFilterChange prop
         />
       )}
     </div>

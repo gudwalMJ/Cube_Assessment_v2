@@ -1,5 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
+
 // Import the delete and download icons
 import deleteIcon from "../../assets/icons/delete.png";
 import downloadIcon from "../../assets/icons/download.png"; // Import the download icon
@@ -24,6 +25,8 @@ const useStyles = createUseStyles((theme) => ({
       textAlign: "center",
       width: "100%",
       color: theme.palette.text,
+      fontFamily: "'Martian Mono', monospace",
+      fontSize: "1.5em",
     },
     "& .deleteButton, & .downloadButton": {
       position: "absolute",
@@ -45,12 +48,12 @@ const useStyles = createUseStyles((theme) => ({
     },
     "& .downloadButton": {
       bottom: 25,
-      right: 10, // Position the download button next to the delete button
+      right: 10, // Place the download button next to the delete button
     },
     "& .deleteButton img, & .downloadButton img": {
       width: "100%",
       height: "100%",
-      objectFit: "contain", // Ensures the image fits inside its container
+      objectFit: "contain",
     },
   },
 }));

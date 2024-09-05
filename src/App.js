@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import { Switch, Route, Redirect } from "react-router-dom";
-import backgroundImage from "./assets/images/background.webp";
 
 // Import Hooks
 import { useWebcamCapture } from "./hooks/useWebcamCapture";
@@ -11,6 +10,7 @@ import LandingPage from "./components/landingPage/LandingPage";
 import Readme from "./components/readme/Readme";
 
 // Import Assets
+import backgroundImage from "./assets/images/background.webp";
 
 const useStyles = createUseStyles((theme) => ({
   App: {
@@ -34,10 +34,11 @@ function App(props) {
   const [sticker, setSticker] = useState();
   const [title, setTitle] = useState("SLAPPE!");
   const [pictures, setPictures] = useState([]);
+  const [filter, setFilter] = useState(""); // State for filter
   const [handleVideoRef, handleCanvasRef, handleCapture, capturedPicture] =
-    useWebcamCapture(sticker, title);
+    useWebcamCapture(sticker, title, filter); // Pass filter as an argument
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (capturedPicture) {
       setPictures((prevPictures) => [...prevPictures, capturedPicture]);
     }
@@ -56,6 +57,7 @@ function App(props) {
             pictures={pictures}
             setPictures={setPictures}
             setSticker={setSticker}
+            setFilter={setFilter} // Pass setFilter down to LandingPage
           />
         </Route>
         <Route path="/readme">
