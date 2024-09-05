@@ -23,11 +23,11 @@ However, we would like for you to show off your strengths as a developer by impr
 
 - Make it look really nice -- DONE
 - Let users pick from multiple (custom) stickers -- DONE
-- Improve the workflow and ux
+- Improve the workflow and ux -- DONE
 - Show multiple captured images in a gallery -- DONE
 - Let users download or share the captured pics -- DONE
-- Add super cool effects to webcam feed
-- Organize, document and test the code
+- Add super cool effects to webcam feed -- DONE
+- Organize, document and test the code -- DONE
 - Integrate with zoom, teams, meet...
 
 ### quickstart

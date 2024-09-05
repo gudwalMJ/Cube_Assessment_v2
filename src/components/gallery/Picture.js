@@ -25,6 +25,8 @@ const useStyles = createUseStyles((theme) => ({
       textAlign: "center",
       width: "100%",
       color: theme.palette.text,
+      fontFamily: "'Martian Mono', monospace",
+      fontSize: "1.5em",
     },
     "& .deleteButton, & .downloadButton": {
       position: "absolute",
