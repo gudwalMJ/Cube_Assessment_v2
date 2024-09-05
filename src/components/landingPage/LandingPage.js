@@ -33,13 +33,17 @@ const LandingPage = ({
   pictures,
   setPictures,
   setSticker,
+  setFilter, // Accept setFilter prop from parent
 }) => {
   const classes = useStyles();
   const [showExpandedArea, setShowExpandedArea] = useState(false);
-  const [filter, setFilter] = useState(""); // State for filter
 
   const handleToggleClick = () => {
     setShowExpandedArea((prev) => !prev);
+  };
+
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter); // Use the filter setter from the parent component
   };
 
   return (
@@ -53,7 +57,6 @@ const LandingPage = ({
           handleVideoRef={handleVideoRef}
           handleCanvasRef={handleCanvasRef}
           handleCapture={handleCapture}
-          filter={filter} // Pass the filter to CameraSection
         />
       </div>
 
@@ -64,7 +67,7 @@ const LandingPage = ({
           pictures={pictures}
           setPictures={setPictures}
           setSticker={setSticker}
-          setFilter={setFilter} // Pass down setFilter prop
+          setFilter={handleFilterChange} // Pass down the handleFilterChange prop
         />
       )}
     </div>

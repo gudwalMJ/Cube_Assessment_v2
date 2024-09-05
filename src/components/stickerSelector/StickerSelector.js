@@ -57,8 +57,6 @@ const useStyles = createUseStyles({
   },
   selected: {
     borderColor: "#b7f2e1 !important",
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-    borderRadius: "50%",
   },
 });
 
