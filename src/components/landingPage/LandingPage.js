@@ -1,10 +1,11 @@
+// src/components/landingPage/LandingPage.js
+
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
 
 // Import Components
 import TitleSection from "./TitleSection";
-import CameraSection from "./CameraSection";
-import ExpandedArea from "./ExpandedArea";
+import ExpandedArea from "./ExpandedArea"; // Update import path if needed
 
 const useStyles = createUseStyles({
   landingPage: {
@@ -33,7 +34,7 @@ const LandingPage = ({
   pictures,
   setPictures,
   setSticker,
-  setFilter, // Accept setFilter prop from parent
+  setFilter,
 }) => {
   const classes = useStyles();
   const [showExpandedArea, setShowExpandedArea] = useState(false);
@@ -53,11 +54,6 @@ const LandingPage = ({
           onToggle={handleToggleClick}
           showExpandedArea={showExpandedArea}
         />
-        <CameraSection
-          handleVideoRef={handleVideoRef}
-          handleCanvasRef={handleCanvasRef}
-          handleCapture={handleCapture}
-        />
       </div>
 
       {showExpandedArea && (
@@ -67,7 +63,10 @@ const LandingPage = ({
           pictures={pictures}
           setPictures={setPictures}
           setSticker={setSticker}
-          setFilter={handleFilterChange} // Pass down the handleFilterChange prop
+          setFilter={handleFilterChange}
+          handleVideoRef={handleVideoRef} // Pass props down to ExpandedArea
+          handleCanvasRef={handleCanvasRef}
+          handleCapture={handleCapture}
         />
       )}
     </div>

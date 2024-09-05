@@ -32,12 +32,11 @@ const useStyles = createUseStyles({
     fontFamily: "'Martian Mono', monospace",
   },
   Stickers: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "1rem",
+    display: "grid", // Change to grid layout
+    gridTemplateColumns: "repeat(3, 1fr)", // Three columns
+    gridGap: "1rem", // Gap between grid items
     marginTop: "1rem",
     marginBottom: "1rem",
-    alignItems: "center",
   },
   stickerWrapper: {
     backgroundColor: "transparent",
@@ -80,7 +79,7 @@ const StickerSelector = ({ stickers, setSticker }) => {
         <button className={classes.stickersButton}>Stickers</button>
       </div>
 
-      {/* Stickers Section Always Visible */}
+      {/* Stickers Section in a 3x3 Grid */}
       <section className={classes.Stickers}>
         {stickers.map((stickerUrl, index) => (
           <button

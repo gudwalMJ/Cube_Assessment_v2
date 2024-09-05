@@ -5,22 +5,20 @@ const useStyles = createUseStyles({
   filterContainer: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
+    alignItems: "center", // Center the entire container
     position: "relative",
     width: "100%",
   },
-  controlRow: {
+  filterRow: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center", // Center vertically within the row
     gap: "1rem",
+    justifyContent: "center", // Center horizontally within the row
     marginBottom: "1rem",
     width: "100%",
-    justifyContent: "flex-start",
   },
   filtersButton: {
-    marginTop: "10px",
-    marginRight: "auto",
-    padding: "15px 40px",
+    padding: "12px 20px", // Adjust padding for a more balanced look
     fontWeight: "700",
     fontSize: "1.5em",
     color: "#fff",
@@ -33,23 +31,20 @@ const useStyles = createUseStyles({
   },
   Filters: {
     display: "flex",
-    flexWrap: "wrap",
     gap: "1rem",
-    marginTop: "1rem",
-    marginBottom: "1rem",
     alignItems: "center",
   },
   filterButton: {
-    width: "120px", // Set a fixed width for all buttons
-    padding: "12px 16px", // Increased padding for larger size
+    width: "120px",
+    padding: "12px 16px",
     borderRadius: "5px",
     border: "none",
     background: "#e6f7ff",
     cursor: "pointer",
-    fontSize: "1rem", // Increased font size
-    fontWeight: "bold", // Optionally make the font bold for better visibility
+    fontSize: "1rem",
+    fontWeight: "bold",
     fontFamily: "'Martian Mono', monospace",
-    textAlign: "center", // Center the text within the button
+    textAlign: "center",
     transition: "background 0.3s ease, transform 0.2s ease",
     "&:hover": {
       backgroundColor: "#cfe7f5",
@@ -81,23 +76,23 @@ const FilterSelector = ({ setFilter }) => {
 
   return (
     <div className={classes.filterContainer}>
-      <div className={classes.controlRow}>
+      {/* Filters Row with Label and Buttons */}
+      <div className={classes.filterRow}>
         <button className={classes.filtersButton}>Filters</button>
-      </div>
 
-      {/* Filters Section Always Visible */}
-      <div className={classes.Filters}>
-        {filters.map((filter, index) => (
-          <button
-            key={index}
-            className={`${classes.filterButton} ${
-              selectedFilter === filter.value ? "selected" : ""
-            }`}
-            onClick={() => handleFilterClick(filter)}
-          >
-            {filter.name}
-          </button>
-        ))}
+        <div className={classes.Filters}>
+          {filters.map((filter, index) => (
+            <button
+              key={index}
+              className={`${classes.filterButton} ${
+                selectedFilter === filter.value ? "selected" : ""
+              }`}
+              onClick={() => handleFilterClick(filter)}
+            >
+              {filter.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
