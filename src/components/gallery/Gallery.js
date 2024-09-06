@@ -1,67 +1,48 @@
 import React, { useState } from "react";
-import { createUseStyles } from "react-jss";
+// Import CSS
+import "./Gallery.css";
 
 // Import Components
 import Lightbox from "./Lightbox";
 import Picture from "./Picture";
 
-const useStyles = createUseStyles((theme) => ({
-  Gallery: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "1rem",
-    marginTop: "50px",
-    marginBottom: "50px",
-  },
-  inputContainer: {
-    marginTop: "20px",
-    marginBottom: "20px", // Add some space below the input area
-    fontSize: "2rem",
-    color: "white",
-    fontWeight: "700",
-    fontFamily: "'Martian Mono', monospace",
-    "& input": {
-      fontWeight: "700",
-      fontSize: "1.5rem",
-      padding: "10px",
-      border: "2px solid #ccc",
-      borderRadius: "5px",
-      marginLeft: "10px",
-    },
-  },
-}));
-
+// Gallery component that displays the list of pictures and handles lightbox functionality
 const Gallery = ({ title, setTitle, pictures, setPictures }) => {
-  const classes = useStyles();
-  const [isOpen, setIsOpen] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false); // Track if lightbox is open
+  const [photoIndex, setPhotoIndex] = useState(0); // Track current photo index in lightbox
 
+  // Open the lightbox with the clicked image
   const handleImageClick = (index) => {
     setPhotoIndex(index);
     setIsOpen(true);
   };
 
+  // Close the lightbox
   const handleCloseLightbox = () => {
     setIsOpen(false);
   };
 
+  // Navigate to the next image in the lightbox
   const handleNext = (e) => {
     e.stopPropagation();
     setPhotoIndex((photoIndex + 1) % pictures.length);
   };
 
+  // Navigate to the previous image in the lightbox
   const handlePrev = (e) => {
     e.stopPropagation();
     setPhotoIndex((photoIndex + pictures.length - 1) % pictures.length);
   };
 
+  // Delete a picture from the gallery
   const handleDelete = (index) => {
     setPictures((prevPictures) => prevPictures.filter((_, i) => i !== index));
   };
 
   return (
-    <section>
-      <div className={classes.inputContainer}>
+    <section className="wrapper">
+      {/* Title input field */}
+      <div className="inputContainer">
         Slap it a name
         <input
           type="text"
@@ -69,7 +50,15 @@ const Gallery = ({ title, setTitle, pictures, setPictures }) => {
           onChange={(ev) => setTitle(ev.target.value)}
         />
       </div>
-      <div className={classes.Gallery}>
+
+      {/* Inform the user that images will be displayed below */}
+      <p className="galleryInfo">
+        Below is your gallery.
+        <br /> You can view and manage your SLAPS here.
+      </p>
+
+      {/* Gallery section displaying pictures in rows of three */}
+      <div className="Gallery">
         {pictures.map((picture, index) => (
           <Picture
             key={index}
@@ -81,6 +70,7 @@ const Gallery = ({ title, setTitle, pictures, setPictures }) => {
         ))}
       </div>
 
+      {/* Lightbox to display clicked images */}
       {isOpen && (
         <Lightbox
           src={pictures[photoIndex].dataUri}

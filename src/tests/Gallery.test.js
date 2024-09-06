@@ -2,8 +2,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { ThemeProvider } from "react-jss";
-import { theme } from "../../theme";
-import Gallery from "./Gallery";
+import { theme } from "../theme";
+import Gallery from "../components/gallery/Gallery";
 
 // Creating a mock set of pictures to use in tests
 const mockPictures = [

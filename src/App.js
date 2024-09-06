@@ -1,36 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { createUseStyles } from "react-jss";
 import { Switch, Route, Redirect } from "react-router-dom";
+// Import CSS
+import "./App.css";
 
 // Import Hooks
 import { useWebcamCapture } from "./hooks/useWebcamCapture";
 
 // Import Components
-import LandingPage from "./components/landingPage/LandingPage";
-import Readme from "./components/readme/Readme";
-
-// Import Assets
-import backgroundImage from "./assets/images/background.webp";
-
-const useStyles = createUseStyles((theme) => ({
-  App: {
-    padding: "20px",
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    minHeight: "100vh",
-    maxWidth: "2500px",
-    margin: "auto",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-}));
+import LandingPage from "./components/landingPage/LandingPage"; // No Readme import anymore
 
 function App(props) {
-  const classes = useStyles(props);
   const [sticker, setSticker] = useState();
   const [title, setTitle] = useState("SLAPPE!");
   const [pictures, setPictures] = useState([]);
@@ -45,7 +24,7 @@ function App(props) {
   }, [capturedPicture]);
 
   return (
-    <div className={classes.App}>
+    <div className="App">
       <Switch>
         <Route path="/" exact>
           <LandingPage
@@ -57,11 +36,8 @@ function App(props) {
             pictures={pictures}
             setPictures={setPictures}
             setSticker={setSticker}
-            setFilter={setFilter} // Pass setFilter down to LandingPage
+            setFilter={setFilter}
           />
-        </Route>
-        <Route path="/readme">
-          <Readme />
         </Route>
         <Redirect to="/" />
       </Switch>
