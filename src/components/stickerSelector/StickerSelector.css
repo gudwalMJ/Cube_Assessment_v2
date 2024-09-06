@@ -1,0 +1,61 @@
+.stickerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.stickersButton {
+  margin-right: auto;
+  padding: 15px 40px;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #fff;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  font-family: "Martian Mono", monospace;
+}
+
+.Stickers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stickerWrapper {
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.stickerWrapper img {
+  height: 3.5rem;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: transform 0.2s ease, border-color 0.3s ease;
+}
+
+.stickerWrapper:hover img {
+  transform: scale(1.05);
+  border-color: #ff6347;
+}
+
+.selected img {
+  border-color: #ff6347;
+}

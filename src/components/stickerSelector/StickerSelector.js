@@ -1,97 +1,48 @@
 import React, { useState } from "react";
-import { createUseStyles } from "react-jss";
+// Import CSS
+import "./StickerSelector.css";
 
-const useStyles = createUseStyles({
-  stickerContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    position: "relative",
-    width: "100%",
-  },
-  controlRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: "1rem",
-    marginBottom: "1rem",
-    width: "100%",
-    justifyContent: "flex-start",
-  },
-  stickersButton: {
-    marginTop: "10px",
-    marginRight: "auto",
-    padding: "15px 40px",
-    fontWeight: "700",
-    fontSize: "1.5em",
-    color: "#fff",
-    backgroundColor: "#ff6347",
-    border: "none",
-    borderRadius: "5px",
-    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-    cursor: "default",
-    fontFamily: "'Martian Mono', monospace",
-  },
-  Stickers: {
-    display: "grid", // Change to grid layout
-    gridTemplateColumns: "repeat(3, 1fr)", // Three columns
-    gridGap: "1rem", // Gap between grid items
-    marginTop: "1rem",
-    marginBottom: "1rem",
-  },
-  stickerWrapper: {
-    backgroundColor: "transparent",
-    padding: "0",
-    boxShadow: "none",
-    cursor: "pointer", // Change cursor to pointer when hovering over stickers
-    "& img": {
-      height: "3.5rem",
-      border: "2px solid transparent",
-      borderRadius: "50%", // Ensures the image itself is rounded
-      transition: "transform 0.2s ease, border-color 0.3s ease",
-    },
-    "&:hover": {
-      transform: "scale(1.05)",
-      borderColor: "#b7f2e1",
-    },
-  },
-  selected: {
-    borderColor: "#b7f2e1 !important",
-  },
-});
-
+// The StickerSelector component allows users to select a sticker from a list of stickers
 const StickerSelector = ({ stickers, setSticker }) => {
-  const classes = useStyles();
+  // State to track which sticker is currently selected
   const [selectedSticker, setSelectedSticker] = useState(null);
 
+  // Handle the logic when a sticker is clicked
   const handleStickerClick = (stickerUrl) => {
+    // If the clicked sticker is already selected, deselect it
     if (selectedSticker === stickerUrl) {
-      setSelectedSticker(null);
-      setSticker(null);
+      setSelectedSticker(null); // Deselect the sticker in the component's state
+      setSticker(null); // Deselect the sticker in the parent component's state
     } else {
-      setSelectedSticker(stickerUrl);
-      setSticker(stickerUrl);
+      // Otherwise, select the clicked sticker
+      setSelectedSticker(stickerUrl); // Update the selected sticker in the component's state
+      setSticker(stickerUrl); // Pass the selected sticker back to the parent component
     }
   };
 
   return (
-    <div className={classes.stickerContainer}>
-      <div className={classes.controlRow}>
-        <button className={classes.stickersButton}>Stickers</button>
+    <div className="stickerContainer">
+      {/* Section for the title/button for stickers */}
+      <div className="controlRow">
+        <button className="stickersButton">Stickers</button>
       </div>
 
-      {/* Stickers Section in a 3x3 Grid */}
-      <section className={classes.Stickers}>
+      {/* Display the stickers in a grid layout */}
+      <section className="Stickers">
+        {/* Map through the stickers */}
         {stickers.map((stickerUrl, index) => (
           <button
-            key={index}
+            key={index} // Unique key for each sticker
             onClick={() => handleStickerClick(stickerUrl)}
             aria-label={`Sticker ${index}`}
           >
+            {/* Wrapper div for the sticker image */}
             <div
-              className={`${classes.stickerWrapper} ${
-                selectedSticker === stickerUrl ? classes.selected : ""
+              className={`stickerWrapper ${
+                selectedSticker === stickerUrl ? "selected" : ""
               }`}
             >
+              {/* Display the sticker image */}
               <img src={stickerUrl} alt={`Sticker ${index}`} />
             </div>
           </button>

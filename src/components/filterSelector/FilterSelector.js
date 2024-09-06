@@ -15,6 +15,7 @@ const useStyles = createUseStyles({
     gap: "1rem",
     justifyContent: "center", // Center horizontally within the row
     marginBottom: "1rem",
+    marginRight: "4.6rem",
     width: "100%",
   },
   filtersButton: {

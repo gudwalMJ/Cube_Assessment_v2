@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import useStickerImage from "./useStickerImage";
+import useStickerImage from "../hooks/useStickerImage";
 
 // A simple component to test useStickerImage hook
 const TestComponent = ({ stickerSrc }) => {
