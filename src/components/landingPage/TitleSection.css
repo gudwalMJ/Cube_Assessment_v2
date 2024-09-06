@@ -1,0 +1,42 @@
+/* Main container for the left panel */
+.leftPanel {
+  flex: 1;
+  padding-right: 20px;
+  color: white;
+  font-family: "Martian Mono", monospace;
+}
+
+/* Styling for the h1 heading */
+.leftPanel h1 {
+  font-weight: 700;
+  font-size: 4rem;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+  margin: 0 0 10px 0;
+}
+
+/* Styling for the paragraph */
+.leftPanel p {
+  font-weight: 700;
+  font-size: 2rem;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Button styling */
+.button {
+  margin-top: 20px;
+  padding: 15px 40px;
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #fff;
+  background-color: #ff6347;
+  border: none;
+  border-radius: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  font-family: "Martian Mono", monospace;
+}
+
+/* Hover effect for the button */
+.button:hover {
+  background-color: #ff4500;
+}

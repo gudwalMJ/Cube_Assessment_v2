@@ -1,0 +1,19 @@
+/* Main container style */
+.Main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Canvas element inside Main */
+.Main canvas {
+  width: 100%;
+  height: auto;
+}
+
+/* Hide video element */
+.Main video {
+  display: none;
+}

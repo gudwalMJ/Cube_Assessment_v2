@@ -1,29 +1,15 @@
 import React from "react";
-import { createUseStyles } from "react-jss";
+// Import CSS
+import "./Main.css";
 
-const useStyles = createUseStyles((theme) => ({
-  Main: {
-    background: theme.palette.secondary,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
-    "& canvas": {
-      width: "100%",
-      height: "auto",
-    },
-    "& video": {
-      display: "none",
-    },
-  },
-}));
-
+// Main component handles rendering the video and canvas elements
 const Main = ({ handleVideoRef, handleCanvasRef, handleCapture, filter }) => {
-  const classes = useStyles();
   return (
-    <section className={classes.Main}>
+    <section className="Main">
+      {/* Video element with applied filter */}
       <video ref={handleVideoRef} style={{ filter }} />
+
+      {/* Canvas element that will capture images on click, with applied filter */}
       <canvas
         ref={handleCanvasRef}
         width={2}

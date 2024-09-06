@@ -1,0 +1,5 @@
+/* Right panel for the camera section */
+.rightPanel {
+  flex: 1;
+  padding-left: 20px;
+}

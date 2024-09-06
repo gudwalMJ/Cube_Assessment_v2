@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 
 const Readme = () => {
   return (
@@ -67,4 +67,4 @@ const Readme = () => {
   );
 };
 
-export default Readme;
+export default Readme; */

@@ -1,30 +1,12 @@
-// src/components/landingPage/LandingPage.js
-
 import React, { useState } from "react";
-import { createUseStyles } from "react-jss";
+// Import CSS
+import "./LandingPage.css";
 
 // Import Components
 import TitleSection from "./TitleSection";
-import ExpandedArea from "./ExpandedArea"; // Update import path if needed
+import ExpandedArea from "./ExpandedArea";
 
-const useStyles = createUseStyles({
-  landingPage: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%",
-    maxWidth: "1200px",
-    padding: "40px",
-  },
-  topSection: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: "20px",
-  },
-});
-
+// LandingPage component that handles layout and interaction logic for the main page
 const LandingPage = ({
   handleVideoRef,
   handleCanvasRef,
@@ -36,26 +18,28 @@ const LandingPage = ({
   setSticker,
   setFilter,
 }) => {
-  const classes = useStyles();
-  const [showExpandedArea, setShowExpandedArea] = useState(false);
+  const [showExpandedArea, setShowExpandedArea] = useState(false); // Track whether the expanded area is shown
 
+  // Toggle the visibility of the expanded area
   const handleToggleClick = () => {
     setShowExpandedArea((prev) => !prev);
   };
 
+  // Handle the filter change by setting the new filter
   const handleFilterChange = (newFilter) => {
-    setFilter(newFilter); // Use the filter setter from the parent component
+    setFilter(newFilter);
   };
 
   return (
-    <div className={classes.landingPage}>
-      <div className={classes.topSection}>
+    <div className="landingPage">
+      <div className="topSection">
         <TitleSection
           onToggle={handleToggleClick}
           showExpandedArea={showExpandedArea}
         />
       </div>
 
+      {/* Show the ExpandedArea component only if showExpandedArea is true */}
       {showExpandedArea && (
         <ExpandedArea
           title={title}
